@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\UsersController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('register', [RegisterController::class, 'register']);
+Route::post('login', [RegisterController::class, 'login']);
+
+Route::get('/clear', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    return 'cache cleard!!';
+});
+
+Route::group(['middleware' => 'auth:api'], function () {
+    // get users list
+    Route::get('/', [UsersController::class, 'index']);
+    Route::get('user-list', [UsersController::class, 'getUsers']);
+    Route::post('logout', [RegisterController::class, 'logout']);
 });
