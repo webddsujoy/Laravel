@@ -15,8 +15,11 @@
 <script src="{{asset('/assets/admin')}}/dist/js/demo.js"></script>
 <script src="{{asset('/assets/admin')}}/dist/js/pages/dashboard2.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="{{asset('/assets/admin')}}/js/custom/logout.js"></script>
 <script>
     ifNotAuthanticate();
+    //  TODO Not working
+    // getProfileDetails();
 </script>
 
 @yield('scripts')

@@ -93,6 +93,13 @@
         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
       </div>
     </li>
+    {{-- user detail --}}
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" href="#">
+        {{-- TODO --}}
+        <span>APHRMS</span>
+      </a>
+    </li>
     {{-- <li class="nav-item">
       <a class="nav-link" data-widget="" href="#" role="button">
         <i class="fas fa-th-large"></i>

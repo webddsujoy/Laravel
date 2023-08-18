@@ -31,5 +31,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     // get users list
     Route::get('/', [UsersController::class, 'index']);
     Route::get('user-list', [UsersController::class, 'getUsers']);
+    Route::get('user-profile', [UsersController::class, 'userProfile']);
     Route::post('logout', [RegisterController::class, 'logout']);
 });

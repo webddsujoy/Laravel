@@ -97,7 +97,8 @@ function logout() {
             removeTokenRedirect();
         },
         (err) => {
-            toastr.error(err.message);
+            // TODO
+            // toastr.error(err.message);
             removeTokenRedirect();
         },
         false

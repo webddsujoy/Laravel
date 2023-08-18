@@ -22,15 +22,25 @@
         <!-- /.content-wrapper -->
       
         <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
+        <aside class="control-sidebar control-sidebar-dark" style="display: block;">
           <!-- Control sidebar content goes here -->
+          <div class="p-3 control-sidebar-content" style="">
+            <h5>APHRMS</h5>
+            <hr class="mb-2">
+            <div class="mb-4">
+              <a class="dropdown-item">Manage profile</a>
+            </div>
+            <div class="mb-4">
+              <a id="user-logout" class="dropdown-item text-uppercase">logout</a>
+            </div>
+          </div>
         </aside>
         <!-- /.control-sidebar -->
       
         <!-- Main Footer -->
         @include('partials.footer')
-      </div>
-      @include('partials.scripts')
-<!-- /.login-box -->
+    </div>
+    @include('partials.scripts')
+  <!-- /.login-box -->
 </body>
 </html>

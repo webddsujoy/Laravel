@@ -12,7 +12,7 @@
                 <p class="login-box-msg">Register a new membership</p>
                 <form>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Full name" id="name" value="Chandan Verma">
+                        <input type="text" class="form-control" placeholder="Full name" id="name" value="">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email" id="email" value="chandan@gmail.com">
+                        <input type="email" class="form-control" placeholder="Email" id="email" value="">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password" id="password" value="12345678">
+                        <input type="password" class="form-control" placeholder="Password" id="password" value="">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Retype password" id="c_password" value="12345678">
+                        <input type="password" class="form-control" placeholder="Retype password" id="c_password" value="">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

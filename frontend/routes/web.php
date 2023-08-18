@@ -34,3 +34,7 @@ Route::get('/forgot-password', function () {
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 });
+
+Route::get('/manage-profile', function () {
+    return view('user.manageProfile');
+});
