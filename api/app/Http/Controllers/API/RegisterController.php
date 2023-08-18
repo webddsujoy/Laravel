@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use Laravel\Passport\Token as AuthTokensModel;
 
@@ -96,36 +98,58 @@ class RegisterController extends BaseController
     //     return $this->sendResponse($data2, 'We have e-mailed your password reset link.');
     // }
 
-    // public function resetPassword(Request $request)
-    // {
-    //     $data = [];
+    public function resetPassword(Request $request)
+    {
+        try {
+            $data = [];
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|exists:users',
+                'password' => 'required|string|min:6|confirmed',
+                'password_confirmation' => 'required',
+            ]);
 
-    //     $validator = Validator::make($request->all(), [
-    //         'email' => 'required|email|exists:users',
-    //         'password' => 'required|string|min:6|confirmed',
-    //         'password_confirmation' => 'required',
-    //         'token' => 'required'
-    //     ]);
+            if ($validator->fails()) {
+                return $this->sendError($validator->errors()->first(), $validator->errors(), 400);
+            }
 
-    //     if ($validator->fails()) {
-    //         return $this->sendError($validator->errors()->first(), $validator->errors(), 400);
-    //     }
+            $user = User::where('email', $request->email)->first();
+            $user->password =  Hash::make($request->password);
+            $user->save();
+            
+            return $this->sendResponse($data, 'Your password has been changed.');
+        } catch (\Throwable $e) {
+            return $this->sendError('Something went wrong!');
+        }
+    }
 
-    //     $updatePassword = DB::table('password_resets')
-    //                         ->where(['email' => $request->email, 'token' => $request->token])->first();
+    public function passwordUpdate(Request $request)
+    {
+        try {
+            $data = [];
+            $validator = Validator::make($request->all(), [
+                'old_password' => 'required',
+                'password' => 'required|string|min:6|confirmed',
+                'password_confirmation' => 'required',
+            ]);
+    
+            if ($validator->fails()) {
+                return $this->sendError($validator->errors()->first(), $validator->errors());
+            }
+    
+            $user = Auth::user();
 
-    //     if (!$updatePassword) {
-    //         return $this->sendError('Invalid token!', ['Invalid token!'], 400);
-    //     }
-
-    //     // $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
-
-    //     $user = User::where('email', $request->email)->first();
-    //     $user->password =  Hash::make($request->password);
-    //     $user->save();
-    //     DB::table('password_resets')->where(['email' => $request->email])->delete();
-
-    //     $user->notify(new UpdatePasswordNotification());
-    //     return $this->sendResponse($data, 'Your password has been changed.');
-    // }
+            if (!Hash::check($request->old_password, $user->password)) {
+                return $this->sendError('Old password does not match!');
+            }
+    
+            $user->password = Hash::make($request->input('password'));
+    
+            if ($user->save()) {
+                return $this->sendResponse($data, 'Password changed successfully!');
+            }
+            return $this->sendError('Something went wrong!');
+        } catch (\Throwable $e) {
+            return $this->sendError('Something went wrong!');
+        }
+    }
 }

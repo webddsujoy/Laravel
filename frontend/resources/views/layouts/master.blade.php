@@ -4,7 +4,7 @@
   @include('partials.header')
 </head>
 <body class="hold-transition login-page">
-    <div class="wrapper">
+    <div class="wrapper" style="width: 100%;">
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
@@ -28,7 +28,7 @@
             <h5>APHRMS</h5>
             <hr class="mb-2">
             <div class="mb-4">
-              <a class="dropdown-item">Manage profile</a>
+              <a class="dropdown-item" href="{{url('manage-profile')}}">Manage profile</a>
             </div>
             <div class="mb-4">
               <a id="user-logout" class="dropdown-item text-uppercase">logout</a>

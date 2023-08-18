@@ -17,8 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Register
 Route::post('register', [RegisterController::class, 'register']);
+// Login
 Route::post('login', [RegisterController::class, 'login']);
+// Reset password
+Route::post('reset-password', [RegisterController::class, 'resetPassword']);
+
 
 Route::get('/clear', function () {
     Artisan::call('cache:clear');
@@ -27,10 +32,16 @@ Route::get('/clear', function () {
     return 'cache cleard!!';
 });
 
+
 Route::group(['middleware' => 'auth:api'], function () {
-    // get users list
+    //
     Route::get('/', [UsersController::class, 'index']);
+    // Get users list
     Route::get('user-list', [UsersController::class, 'getUsers']);
+    // Get user profile
     Route::get('user-profile', [UsersController::class, 'userProfile']);
+    // User logout
     Route::post('logout', [RegisterController::class, 'logout']);
+    // Password update
+    Route::post('password-update', [RegisterController::class, 'passwordUpdate']);
 });
