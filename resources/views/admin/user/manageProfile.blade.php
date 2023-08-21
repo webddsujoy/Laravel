@@ -10,16 +10,15 @@
                     <div class="col-md-3">
                         <!-- Profile Image -->
                         <div class="card card-primary card-outline">
-                            <form id="brandImportForm">
+                            <form id="userImportForm">
                                 @csrf
-                                <input type="hidden" name="_token" value="">
                                 <div class="card-body box-profile">
                                     <div class="text-center">
-                                        <img class="profile-user-img img-fluid img-circle" src="" alt="User profile picture">
-                                        <input type="file" name="image" id="profileimg" style="display:none">
+                                        <img class="profile-user-img img-fluid img-circle user-image" alt="User profile picture">
                                     </div>
                                     <h3 class="profile-username text-center">Admin</h3>
-                                    <button type="button" id="profileimgbtn" class="btn btn-primary btn-block"><b>Change image</b></button>
+                                    <input style="display: none;" type="file" id="profileimg" name="image" />
+                                    <label class="btn btn-primary btn-block" id="profileimg-label" for="profileimg">Select a File</label>
                                     <button type="submit" id="profileimgupdate" class="btn btn-primary btn-block"><b>Update</b></button>
                                 </div>
                             </form>
@@ -36,9 +35,8 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="profile-update">
-                                        <form class="user-update-form">
+                                        <form class="user-update-form" id="kt_modal_user_profile_edit_form">
                                             @csrf
-                                            <input type="hidden" name="_token" value="">
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                                 <div class="col-sm-10">
@@ -59,7 +57,7 @@
                                             </div>
                                             <div class="form-group row">
                                                 <div class="offset-sm-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                                    <button type="submit" id="user_profile_update_submit" class="btn btn-danger">Submit</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -67,7 +65,6 @@
                                     <div class="tab-pane" id="password-update">
                                         <form class="user-password-update" id="kt_modal_user_update_password_form">
                                             @csrf
-                                            <input type="hidden" name="_token" value="">
                                             <div class="form-group row">
                                                 <label for="old_password" class="col-sm-2 col-form-label">Old password</label>
                                                 <div class="col-sm-10">

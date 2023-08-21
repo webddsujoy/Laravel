@@ -18,7 +18,8 @@ function authanticate(url, email, password, btnLoader) {
                     toastr.error(data.message);
                 } else {
                     console.log(data);
-                    localStorage.setItem("authToken", data.data.authToken);
+                    localStorage.setItem("authToken", data.data.token);
+
                     toastr.success(data.message);
                     window.setTimeout(() => {
                         window.location.href = appconfig.siteutl + "/dashboard";
@@ -189,10 +190,21 @@ function getProfileDetails() {
         (data) => {
             if (data.success == true) {
                 localStorage.setItem("userprofile", JSON.stringify(data.data));
-                $("#logged-user-name").html(data.data.name);
-                $("#logged-user-role").html(data.data.roles[0].name);
-                $("#profile-image").attr("src", data.data.image);
-                $("#user-image").attr("src", data.data.image);
+                // $("#logged-user-name").html(data.data.name);
+                // $("#logged-user-role").html(data.data.roles[0].name);
+                // $("#profile-image").attr("src", data.data.image);
+                // $("#user-image").attr("src", data.data.image);
+
+                $(".logged-user-name").html(data.data.name);
+                $(".profile-image").attr("src", data.data.image);
+                $(".user-image").attr("src", data.data.image);
+                // TODO
+                // $(".logged-user-role").html(data.data.roles[0].name);
+
+                // TODO
+                $('#inputName').val(data.data.name);
+                $('#inputEmail').val(data.data.email);
+                $('#phone').val(data.data.phone);
             } else {
                 toastr.error(data.message);
             }
@@ -240,7 +252,8 @@ function userProfileUpdate() {
                 getProfileDetails();
                 setTimeout(() => {
                     window.location.href =
-                        appconfig.siteutl + "/accounts/overview";
+                        // appconfig.siteutl + "/accounts/overview";
+                        appconfig.siteutl + "/manage-profile";
                 }, 1000);
             } else {
                 toastr.error(res.message);
@@ -271,7 +284,8 @@ function userPasswordUpdate() {
                 toastr.success(res.message);
                 setTimeout(() => {
                     window.location.href =
-                        appconfig.siteutl + "/accounts/overview";
+                        // appconfig.siteutl + "/accounts/overview";
+                        appconfig.siteutl + "/manage-profile";
                 }, 1000);
             } else {
                 toastr.error(res.message);
@@ -286,6 +300,38 @@ function userPasswordUpdate() {
                 toastr.error("Please correct the form fields");
             } else {
                 toastr.error(err.message);
+            }
+        },
+        false
+    );
+}
+
+// 
+function profileImageUpdate() {
+    var formData = new FormData($("#userImportForm")[0]);
+
+    makeFormApiCall(
+        appconfig.apibaseurl + "/profile-image-update",
+        "POST",
+        formData,
+        true,
+        (res) => {
+            if (res.success) {
+                toastr.success(res.message);
+                getProfileDetails();
+                setTimeout(() => {
+                    window.location.href =
+                        // appconfig.siteutl + "/accounts/overview";
+                        appconfig.siteutl + "/manage-profile";
+                }, 1000);
+            } else {
+                toastr.error(res.message);
+            }
+        },
+        (err) => {
+            if (typeof err.data != "undefined") {
+                showFormErrors($("#kt_modal_user_profile_edit_form"), err.data);
+                toastr.error("Please correct the form fields");
             }
         },
         false

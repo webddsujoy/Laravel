@@ -152,4 +152,27 @@ class RegisterController extends BaseController
             return $this->sendError('Something went wrong!');
         }
     }
+
+    public function profileUpdate(Request $request)
+    {
+        
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required|numeric|digits:10|min:10',
+        ]);
+        
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        
+        $user = Auth::user();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        if($user->save()){
+            return $this->sendResponse([], 'Profile Updated successfully!');
+        }
+        return $this->sendError('Something went wrong!');
+    }
 }

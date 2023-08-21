@@ -97,7 +97,7 @@
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         {{-- TODO --}}
-        <span>APHRMS</span>
+        <span class="logged-user-name"></span>
       </a>
     </li>
     {{-- <li class="nav-item">
@@ -125,11 +125,11 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="{{asset('/assets/admin')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <img src="" class="img-circle elevation-2 user-image" alt="User Image">
       </div>
       <div class="info">
         {{-- User info --}}
-        <a href="{{url('/manage-profile')}}" class="d-block">APHRMS</a>
+        <a href="{{url('/manage-profile')}}" class="d-block"><span class="logged-user-name"></span></a>
       </div>
     </div>
     <!-- Sidebar Menu -->

@@ -18,8 +18,7 @@
 <script src="{{asset('/assets/admin')}}/js/custom/logout.js"></script>
 <script>
     ifNotAuthanticate();
-    //  TODO Not working
-    // getProfileDetails();
+    getProfileDetails();
 </script>
 
 @yield('scripts')
