@@ -34,8 +34,12 @@ Route::get('/clear', function () {
 
 
 Route::group(['middleware' => 'auth:api'], function () {
+    // Roles
+    // Route::resource('roles', RolesController::class);
+    // Permissions
+    // Route::resource('permissions', PermissionsController::class);
     //
-    Route::get('/', [UsersController::class, 'index']);
+    // Route::get('/', [UsersController::class, 'index']);
     // Get users list
     Route::get('user-list', [UsersController::class, 'getUsers']);
     // Get user profile

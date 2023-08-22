@@ -20,8 +20,28 @@ class UsersController extends BaseController
 
     public function getUsers(Request $request)
     {
-        $userData = User::orderBy('id', 'desc')->get();
-        return $this->sendResponse($userData, 'User List.');
+        try {
+            $per_page=10;
+            if($request->has('per_page')) $per_page=$request->per_page;
+            $userData = User::when($request->search, function ($query, $search) {
+                $query->where('id', $search);
+            })->orderBy('id', 'desc')->paginate($per_page);
+            foreach ($userData as $key => &$user) {
+                $user['image'] = '<img src="'. Storage::disk('public')->url($user->image) .'" class="" alt="User Image" style="width: 40px;">';
+                $user['action'] = '<div class="btn-group">'.
+                                        '<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.
+                                            '<i class="fa fa-cog" aria-hidden="true"></i>'.
+                                        '</button>'.
+                                        '<div class="dropdown-menu">'.
+                                            '<a class="dropdown-item user_edit" data-user-edit="'.$user->id.'" href="#"><i class="fas fa-edit"></i> Edit</a>'.
+                                            '<a class="dropdown-item user_delete" data-user-delete="'.$user->id.'" href="#"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a>'.
+                                        '</div>'.
+                                    '</div>';
+            }
+            return $this->sendResponse($userData, 'User List.');
+        } catch (\Throwable $e) {
+            return $this->sendError('Something went wrong!');
+        }
     }
 
     public function userProfile(Request $request)
