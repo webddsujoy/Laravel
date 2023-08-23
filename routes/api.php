@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\PermissionsController;
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -34,11 +36,16 @@ Route::get('/clear', function () {
 
 
 Route::group(['middleware' => 'auth:api'], function () {
-    // Roles
-    // Route::resource('roles', RolesController::class);
-    // Permissions
-    // Route::resource('permissions', PermissionsController::class);
-    //
+    // Get Roles
+    Route::get('get-user-roles', [RoleController::class, 'getUserRoles']);
+    // Create New User Roles
+    Route::post('create-new-user-roles', [RoleController::class, 'createNewUserRoles']);
+    // Get role and permissions
+    Route::post('get-role-and-permissions', [RoleController::class, 'getRoleAndPermissions']);
+    // Get all permissions
+    Route::get('get-permissions', [PermissionsController::class, 'getPermissions']);
+
+    // ************************************************
     // Route::get('/', [UsersController::class, 'index']);
     // Get users list
     Route::get('user-list', [UsersController::class, 'getUsers']);
@@ -51,7 +58,5 @@ Route::group(['middleware' => 'auth:api'], function () {
     // Password update
     Route::post('password-update', [RegisterController::class, 'passwordUpdate']);
     // Profile update
-    Route::post('profile-update', [RegisterController::class, 'profileUpdate']);
-
-    Route::get('user-roles', [UsersController::class, 'userRoles']);
+    Route::post('profile-update', [RegisterController::class, 'profileUpdate']);    
 });

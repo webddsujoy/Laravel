@@ -35,7 +35,6 @@ function authanticate(url, email, password, btnLoader) {
     }
 }
 
-
 function registerAuthanticate(url, name, email, password, c_password, btnLoader) {
     btnLoader = btnLoader || 0;
     if (name !="" && email != "" && password != "" && c_password != "") {
@@ -270,7 +269,6 @@ function userProfileUpdate() {
 }
 
 // Update Password
-
 function userPasswordUpdate() {
     var formData = new FormData($("#kt_modal_user_update_password_form")[0]);
 

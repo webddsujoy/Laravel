@@ -49,7 +49,12 @@ Route::get('/general-settings', function () {
 
 // Roles
 Route::get('/roles', function () {
-    return view('admin.Roles.Role');
+    return view('admin.Roles.role');
+});
+
+// Roles
+Route::get('/create-roles', function () {
+    return view('admin.roles.create_role');
 });
 
 // Admin
