@@ -335,3 +335,37 @@ function profileImageUpdate() {
         false
     );
 }
+
+function createNewUser(url, name, email, password, c_password, role_id,  btnLoader) {
+    btnLoader = btnLoader || 0;
+    if (name !="" && email != "" && password != "" && c_password != "" && role_id != "") {
+        startButtonLoader(btnLoader);
+        let creditinals = {
+            name: name,
+            email: email,
+            password: password,
+            c_password: c_password,
+            role_id: role_id,
+        };
+
+        makeJsonApiCall(
+            url,
+            "POST",
+            JSON.stringify(creditinals),
+            true,
+            (data) => {
+                stopButtonLoader(btnLoader);
+                if (data.success == false) {
+                    toastr.error(data.message);
+                } else {
+                    toastr.success(data.message);
+                }
+            },
+            (err) => {
+                stopButtonLoader(btnLoader);
+                toastr.error(err.message);
+            },
+            false
+        );
+    }
+}

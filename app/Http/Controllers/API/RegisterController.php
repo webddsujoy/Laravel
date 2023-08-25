@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Laravel\Passport\Token as AuthTokensModel;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends BaseController
 {
@@ -24,7 +25,6 @@ class RegisterController extends BaseController
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required',
                 'c_password' => 'required|same:password',
-                'role' => 'required',
             ]);
 
             if ($validator->fails()) {
@@ -35,13 +35,10 @@ class RegisterController extends BaseController
             $input['password'] = bcrypt($input['password']);
             $user = User::create($input);
 
-            // Assign role to user
-            $user->assignRole($request->input('roles'));
-
             $success['token'] =  $user->createToken('MyApp')->accessToken;
             $success['name'] =  $user->name;
-            
-            return $this->sendResponse($success, 'User register successfully.'); 
+
+            return $this->sendResponse($success, 'User register successfully.');
         } catch (\Throwable $e) {
             return $this->sendError('Something went wrong!', $e);
         }
@@ -179,5 +176,35 @@ class RegisterController extends BaseController
             return $this->sendResponse([], 'Profile Updated successfully!');
         }
         return $this->sendError('Something went wrong!');
+    }
+
+    public function createNewUser(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required',
+                'c_password' => 'required|same:password',
+                'role_id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return $this->sendError('Validation Error.', $validator->errors());
+            }
+
+            $input = $request->all();
+            $input['password'] = bcrypt($input['password']);
+            $user = User::create($input);
+            
+            // get role
+            $role = Role::where('id', $request->input('role_id'))->first();
+            // Assign role to user
+            $user->assignRole($role);
+
+            return $this->sendResponse([], 'New User Created successfully.'); 
+        } catch (\Throwable $e) {
+            return $this->sendError('Something went wrong!', $e);
+        }
     }
 }

@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends BaseController
 {
-    // return $this->sendResponse($success, 'User register successfully.'); 
-    // return $this->sendError('Something went wrong!', $e);
     function __construct()
     {
          $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
@@ -29,7 +29,7 @@ class RoleController extends BaseController
             $roles = Role::orderBy('id','DESC')->paginate($per_page);
 
             foreach ($roles as $key => &$role) {
-                $role['action'] = '<a class="btn btn-primary" href="#">Edit</a>
+                $role['action'] = '<a class="btn btn-primary" href="'. url('edit-roles/'.$role->id.'').'">Edit</a>
                     <button type="submit" class="btn btn-danger">Delete</button>';
             }
             return $this->sendResponse($roles, 'User roles.');
@@ -38,9 +38,18 @@ class RoleController extends BaseController
         }
     }
 
-    public function createNewUserRoles(Request $request)
+    public function getUserRolesList(Request $request)
     {
-        // return [$request->permissions];
+        try {
+            $roles = Role::orderBy('id','DESC')->get();
+            return $this->sendResponse($roles, 'User roles.');
+        } catch (\Throwable $e) {
+            return $this->sendError('Something went wrong!', $e);
+        }
+    }
+
+    public function createNewUserRoles(Request $request)
+    { 
         try {
             $validator = Validator::make($request->all(), [
                 'name' => 'required|unique:roles,name',

@@ -38,12 +38,18 @@ Route::get('/clear', function () {
 Route::group(['middleware' => 'auth:api'], function () {
     // Get Roles
     Route::get('get-user-roles', [RoleController::class, 'getUserRoles']);
+    // Get Roles list
+    Route::get('get-user-roles-list', [RoleController::class, 'getUserRolesList']);
     // Create New User Roles
     Route::post('create-new-user-roles', [RoleController::class, 'createNewUserRoles']);
     // Get role and permissions
     Route::post('get-role-and-permissions', [RoleController::class, 'getRoleAndPermissions']);
     // Get all permissions
     Route::get('get-permissions', [PermissionsController::class, 'getPermissions']);
+    // Create new user
+    Route::post('create-new-user', [RegisterController::class, 'createNewUser']);
+    // Edit role and permissions
+    Route::get('edit-role-permissions', [PermissionsController::class, 'editRolePermissions']);
 
     // ************************************************
     // Route::get('/', [UsersController::class, 'index']);

@@ -14,8 +14,11 @@
             <div class="row">
                 <div class="col-12 my-4">
                     <div class="card">
-                        <div class="card-header bg-primary">
-                          Admin Management
+                        <div class="card-header bg-primary" style="position: relative;">
+                            <div class="d-flex" style="justify-content: space-between;">
+                                <div class="d-flex align-items-center">Admin Management</div>
+                                <div class=""><a type="button" href="{{url('create-user')}}" class="btn btn-success">Create User</a></div>
+                            </div>
                         </div>
                         <div class="card-body">
                           <div class="tabale-section">

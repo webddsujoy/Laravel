@@ -57,7 +57,17 @@ Route::get('/create-roles', function () {
     return view('admin.roles.create_role');
 });
 
+// Edit
+Route::get('/edit-roles/{id}', function () {
+    return view('admin.roles.edit_role');
+});
+
+
 // Admin
 Route::get('/admin', function () {
     return view('admin.admin.admin');
+});
+
+Route::get('/create-user', function () {
+    return view('admin.admin.create_user');
 });
