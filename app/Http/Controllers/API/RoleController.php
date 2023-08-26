@@ -30,7 +30,7 @@ class RoleController extends BaseController
 
             foreach ($roles as $key => &$role) {
                 $role['action'] = '<a class="btn btn-primary" href="'. url('edit-roles/'.$role->id.'').'">Edit</a>
-                    <button type="submit" class="btn btn-danger">Delete</button>';
+                    <button type="submit" data-delete-role="'. $role->id .'" class="btn btn-danger">Delete</button>';
             }
             return $this->sendResponse($roles, 'User roles.');
         } catch (\Throwable $e) {

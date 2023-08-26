@@ -8,7 +8,8 @@ $(document).ready(function () {
         let c_password = $('#c_password').val();
         let role_id = $('#role_id').val();
         let btnLoader = $(this);
-        createNewUser(appconfig.apibaseurl+'/create-new-user', name, email, password, c_password, role_id, btnLoader);
+        createNewUser(appconfig.apibaseurl + '/create-new-user', name, email, password, c_password, role_id, btnLoader);
+        $('#create_new_user')[0].reset();
     });
 
     // get user role list
