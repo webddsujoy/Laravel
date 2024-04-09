@@ -21,15 +21,18 @@
                             </div>
                         </div>
                         <div class="card-body">
-                          <div class="tabale-section">
+                          <div class="tabale-section table-responsive">
                             <table id="admin_management" class="display table table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>Empolyee Id</th>
                                         <th>Image</th>
-                                        <th>Name</th>
+                                        <th>Full Name</th>
                                         <th>Email</th>
+                                        <th>Designation</th> 
                                         <th>Phone</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
                                         <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
@@ -45,9 +48,12 @@
                                             <td>
                                                 <input type="text" class="form-control" id="user_email" placeholder="Enter Email">
                                             </td>
+                                            <td></td>
                                             <td>
                                                 <input type="text" class="form-control" id="user_phone" placeholder="Enter Phone">
                                             </td>
+                                            <td></td>
+                                             <td></td>
                                             <td>
                                                 <input type="text" class="form-control" id="user_created_at" placeholder="Created at">
                                             </td>

@@ -7,9 +7,9 @@
     <div class="wrapper" style="width: 100%;">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
           <img class="animation__wobble" src="{{asset('/assets/admin')}}/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
+        </div> -->
       
         <!-- Navbar -->
         @include('partials.sidebar')

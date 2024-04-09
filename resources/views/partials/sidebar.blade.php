@@ -124,9 +124,9 @@
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
+      <!-- <div class="image">
         <img src="" class="img-circle elevation-2 user-image" alt="User Image">
-      </div>
+      </div> -->
       <div class="info">
         {{-- User info --}}
         <a href="{{url('/manage-profile')}}" class="d-block"><span class="logged-user-name"></span></a>
@@ -147,16 +147,17 @@
             <p>User Management<i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{url('/roles')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Roles</p>
-              </a>
-            </li>
+           
             <li class="nav-item">
               <a href="{{url('/admin')}}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Admins</p>
+                <p> Admin</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{url('/roles')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Staff</p>
               </a>
             </li>
           </ul>

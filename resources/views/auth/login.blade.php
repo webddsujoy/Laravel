@@ -3,7 +3,10 @@
 @section('title')Login - {{env('APP_NAME')}}@endsection
 
 @section('content')
-<div class="login-box">
+
+<div class="login-section" style=" background-image: url('{{asset('assets/admin/dist/img/login-bg.jpg')}}'); ">
+<div class="login-box"  >
+
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
@@ -29,7 +32,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
@@ -38,10 +41,10 @@
               </label>
             </div>
           </div>
-        </div>
-        <div class="row d-flex justify-content-center">
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block" id="user_login">Sign In</button>
+        </div> -->
+        <div class="row d-flex justify-content-start">
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block my-3" id="user_login">Sign In</button>
           </div>
         </div>
       </form>
@@ -59,13 +62,14 @@
       <p class="mb-1">
         <a href="{{url('forgot-password')}}">I forgot my password</a>
       </p>
-      <p class="mb-0">
+      <!-- <p class="mb-0">
         <a href="{{url('register')}}" class="text-center">Register a new membership</a>
-      </p>
+      </p> -->
     </div>
     <!-- /.card-body -->
   </div>
   <!-- /.card -->
+</div>
 </div>
 @endsection
 @section('scripts')
