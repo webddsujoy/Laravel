@@ -144,6 +144,22 @@
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
+            <p>Master<i class="right fas fa-angle-left"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+           
+            <li class="nav-item">
+              <a href="{{url('/company')}}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p> Company</p>
+              </a>
+            </li>
+         
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
             <p>User Management<i class="right fas fa-angle-left"></i></p>
           </a>
           <ul class="nav nav-treeview">
@@ -162,27 +178,7 @@
             </li>
           </ul>
         </li>
-
-        {{-- <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-user"></i>
-            <p>About<i class="right fas fa-angle-left"></i></p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{url('/')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Roles</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{url('/')}}" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Admins</p>
-              </a>
-            </li>
-          </ul>
-        </li> --}}
+        
 
         <li class="nav-item">
           <a href="{{url('/general-settings')}}" class="nav-link">

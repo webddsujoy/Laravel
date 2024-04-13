@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Country;
+use App\Models\State;
+use App\Models\City;
 use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -73,8 +76,19 @@ class UsersController extends BaseController
         return $this->sendError('Something went wrong!');
     }
 
-    public function userRoles(Request  $request)
+    public function country_list()
     {
-        return 'user roles';
+        return $this->sendResponse(Country::all(), 'Country list fetched successfully!');
     }
+
+    public function state_list($country_id)
+    {
+        return $this->sendResponse(State::where('country_id',$country_id)->get(), 'State list fetched successfully!');
+    }
+
+    public function city_list($state_id)
+    {
+        return $this->sendResponse(City::where('state_id',$state_id)->get(), 'City list fetched successfully!');
+    }
+    
 }

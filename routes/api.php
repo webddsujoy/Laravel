@@ -4,6 +4,7 @@ use App\Http\Controllers\API\PermissionsController;
 use App\Http\Controllers\API\RegisterController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\UsersController;
+use App\Http\Controllers\API\CompanyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -64,5 +65,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     // Password update
     Route::post('password-update', [RegisterController::class, 'passwordUpdate']);
     // Profile update
-    Route::post('profile-update', [RegisterController::class, 'profileUpdate']);    
+    Route::post('profile-update', [RegisterController::class, 'profileUpdate']);
+
+    // locations
+    Route::get('country-list',[UsersController::class,'country_list']);
+    Route::get('state-list/{country_id}',[UsersController::class,'state_list']);
+    Route::get('city-list/{state_id}',[UsersController::class,'city_list']);
+
+    //Master
+    Route::apiResource('companies',CompanyController::class);
 });

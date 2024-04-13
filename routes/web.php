@@ -47,6 +47,11 @@ Route::get('/general-settings', function () {
     return view('admin.generalSettings.generalSettings');
 });
 
+// Company
+Route::get('/company', function () {
+    return view('admin.company.company');
+});
+
 // Roles
 Route::get('/roles', function () {
     return view('admin.Roles.role');
